@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top-Down Game</title>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script>
+        // Get the canvas element and its 2D context
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game variables
+        const centerSquare = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            width: 100,
+            height: 100,
+            color: 'gray'
+        };
+
+        const spawnedSquares = [];
+        const maxSpawnedSquares = 20;
+        const spawnRate = 1000; // Milliseconds
+
+        // Game loop
+        function gameLoop() {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the center square
+            ctx.fillStyle = centerSquare.color;
+            ctx.fillRect(centerSquare.x, centerSquare.y, centerSquare.width, centerSquare.height);
+
+            // Draw the spawned squares
+            spawnedSquares.forEach(square => {
+                ctx.fillStyle = square.color;
+                ctx.fillRect(square.x, square.y, square.width, square.height);
+            });
+
+            // Spawn new squares
+            spawnSquares();
+
+            // Request the next frame
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Spawn new squares
+        function spawnSquares() {
+            if (spawnedSquares.length < maxSpawnedSquares) {
+                const newSquare = {
+                    x: Math.random() * (canvas.width - 20) + 10,
+                    y: Math.random() * (canvas.height - 20) + 10,
+                    width: Math.random() * 30 + 10,
+                    height: Math.random() * 30 + 10,
+                    color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`
+                };
+                spawnedSquares.push(newSquare);
+            }
+        }
+
+        // Start the game loop
+        setInterval(spawnSquares, spawnRate);
+        gameLoop();
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+#search-input {
+    margin-top: 20px;
+}
+
+
+.navbar ul{
+    list-style-type: none;
+    background-color : hsl(0, 0%, 0%);
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+.navbar a{
+    color: rgb(134, 17, 134);
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+.navbar a:hover{
+    background-color: hsl(296, 53%, 16%);
+}
+.navbar li{
+    float: left;
+}
+
+input {
+    width: 250px;
+}
+
